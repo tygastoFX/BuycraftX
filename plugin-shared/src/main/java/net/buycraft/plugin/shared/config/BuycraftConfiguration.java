@@ -109,6 +109,10 @@ public class BuycraftConfiguration {
         return Integer.parseInt(properties.getProperty("commands-per-tick", "10"));
     }
 
+    public String getCheckoutMSG() {
+        return properties.getProperty("checkout-msg", null);
+    }
+
     public void fillDefaults() {
         defaultSet("server-key", "INVALID");
         defaultSet("is-bungeecord", "false");
@@ -118,5 +122,6 @@ public class BuycraftConfiguration {
         defaultSet("language", Locale.getDefault().toLanguageTag());
         defaultSet("verbose", "true");
         defaultSet("push-commands", "false");
+        defaultSet("checkout-msg", "'Tebex: Click here to purchase:'");
     }
 }

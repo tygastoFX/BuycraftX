@@ -5,10 +5,13 @@ import net.buycraft.plugin.data.responses.CheckoutUrlResponse;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
+
 public class SendCheckoutLink implements Runnable {
+
     private BuycraftPluginBase plugin;
     private int id;
     private Player player;
@@ -48,10 +51,9 @@ public class SendCheckoutLink implements Runnable {
             return;
         }
         if (!isCategory) {
-            player.sendMessage(ChatColor.STRIKETHROUGH + "                                            ");
-            player.sendMessage(ChatColor.GREEN + plugin.getI18n().get("to_buy_this_package"));
-            player.sendMessage(ChatColor.BLUE + ChatColor.UNDERLINE.toString() + response.getUrl());
-            player.sendMessage(ChatColor.STRIKETHROUGH + "                                            ");
+            String message = plugin.getConfiguration().getCheckoutMSG().replace("\n", "").replace("\"", "");
+            String url = response.getUrl().replace("\n", "").replace("\"", "");
+            player.sendMessage(color(message + url));
         } else {
             player.sendMessage(ChatColor.STRIKETHROUGH + "                                            ");
             player.sendMessage(ChatColor.GREEN + plugin.getI18n().get("to_view_this_category"));
@@ -59,4 +61,13 @@ public class SendCheckoutLink implements Runnable {
             player.sendMessage(ChatColor.STRIKETHROUGH + "                                            ");
         }
     }
+
+    public static String color(String message) {
+
+        // Do color stuff
+
+        return message;
+    }
+
+
 }
